@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="{% block ng_app %}{% endblock %}">
+<head>
+  <title>Steward | {% block title %}Home{% endblock %}</title>
+{% block head -%}
+    {%- block all_css -%}
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+        <style type='text/css'>
+        body {
+            padding-top:60px;
+        }
+        .text-large {
+        font-size: 16px;
+        }
+        .text-xlarge {
+        font-size: 18px;
+        }
+        .text-xxlarge {
+        font-size: 24px;
+        }
+        .text-xxxlarge {
+        font-size: 36px;
+        }
+        </style>
+        {% block css %}
+        {% endblock %}
+    {%- endblock -%}
+{%- endblock %}
+</head>
+<body>
+{% block body %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Steward</a>
+            {% block subtitle %}{% endblock %}
+
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                {% for title, name in request.steward_web_apps %}
+                  <li><a href="{{ name | route_url }}">{{ title }}</a><li>
+                {% endfor %}
+              </ul>
+              <ul class="nav pull-right">
+                {% if request.userid %}
+                <li><a href="{{ 'logout' | route_url }}">logout</a></li>
+                {% else %}
+                <li><a href="{{ 'login' | route_url }}">login</a></li>
+                {% endif %}
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id='container' class='container container-fluid'>
+    {% block content %}
+    {% endblock %}
+</div>
+{% endblock %}
+{% block all_scripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular-route.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    {% block scripts %}
+    {% endblock %}
+{% endblock %}
+</body>
+</html>
