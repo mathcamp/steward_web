@@ -44,9 +44,8 @@
 
             <div class="nav-collapse collapse">
               <ul class="nav">
-                {% for title, name in request.steward_web_apps %}
-                  <li><a href="{{ name | route_url }}">{{ title }}</a><li>
-                {% endfor %}
+                {% block nav_top %}
+                {% endblock %}
               </ul>
               <ul class="nav pull-right">
                 {% if request.userid %}

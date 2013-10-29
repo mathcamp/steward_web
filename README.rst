@@ -12,3 +12,11 @@ To use ``steward_web``, just add it to your includes either programmatically::
 or in the config.ini file::
 
     pyramid.includes = steward_web
+
+Configuration
+=============
+::
+
+    # Use the built-in username/password login system. You may want to disable
+    # this if you want to use custom login with OpenID or something similar
+    steward.web.basic_login = true

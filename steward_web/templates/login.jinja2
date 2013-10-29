@@ -1,0 +1,31 @@
+{% extends "base.jinja2" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <div class='row'>
+        <div class='span4 offset4'>
+            {% if message %}
+                <div class='alert alert-error text-center'>
+                <h4>{{ message }}</h4>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class='row'>
+        <div class='span12'>
+          <form action="{{ 'login' | route_url }}" method="post" class='text-center'>
+                <input type="hidden" name="came_from" value="{{ came_from }}"/>
+                <input id='userid' type="text" name="userid" value="{{ userid }}" placeholder="username" /><br/>
+                <input type="password" name="password" placeholder="password"
+                        value="{{ password }}"/><br/>
+                <input class="button btn-info" type="submit" name="do_auth" value="Log In"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+<script type='text/javascript'>
+$(function() {
+    $('#userid').focus();
+});
+</script>
+{% endblock %}

@@ -1,9 +1,27 @@
 {% extends "base.jinja2" %}
 
 {% block title %}Home{% endblock %}
+{% block nav_top %}
+  {% for title, name in request.steward_web_apps %}
+    <li><a href="{{ name | route_url }}">{{ title }}</a><li>
+  {% endfor %}
+{% endblock %}
 
 {% block content %}
 <div>
   <h1 class="text-center">Welcome to Steward</h1>
+</div>
+<div>
+  <p class="text-xlarge">
+    Extensions with web interfaces will appear as links in the top nav bar. If
+    there's nothing there, chances are you haven't included any extensions with
+    a web interface.
+  </p>
+  <p class="text-xlarge">
+    If you want to pretty up this home screen, write a replacement
+    'index.jinja2' file and put it into your project's templates directory.
+    Then add that to your 'jinja2.directories' configuration and make sure it
+    appears <strong>before</strong> 'steward_web:templates'.
+  </p>
 </div>
 {% endblock %}

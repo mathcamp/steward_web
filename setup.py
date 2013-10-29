@@ -10,6 +10,7 @@ CHANGES = open(os.path.join(HERE, 'CHANGES.txt')).read()
 
 REQUIREMENTS = [
     'steward',
+    'pyramid_jinja2',
 ]
 
 DATA = {
