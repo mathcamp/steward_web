@@ -9,10 +9,24 @@
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
         <style type='text/css'>
+        /* Only move the body down on desktop */
         @media (min-width: 768px)
         {
           body {
             padding-top:60px;
+          }
+        }
+        /* Get rid of the side gutters on mobile */
+        @media (max-width: 767px) {
+          body {
+            padding-right: 0;
+            padding-left: 0;
+          }
+          .navbar-fixed-top,
+          .navbar-fixed-bottom,
+          .navbar-static-top {
+            margin-right: 0;
+            margin-left: 0;
           }
         }
         .text-large {
