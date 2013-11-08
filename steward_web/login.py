@@ -1,20 +1,7 @@
 """ Views for basic username/password auth """
-import logging
 from pyramid.httpexceptions import HTTPFound, HTTPForbidden
 from pyramid.security import NO_PERMISSION_REQUIRED, forget, remember
 from pyramid.view import view_config
-
-
-LOG = logging.getLogger(__name__)
-
-
-def _get_app_root(request):
-    """ Get the root url of the app """
-    try:
-        return request.route_url('root')
-    except KeyError:
-        LOG.warn("Steward has no 'root' route_name. Using '/' instead")
-        return '/'
 
 
 @view_config(route_name='logout')
@@ -36,7 +23,7 @@ def do_login(context, request):
     referrer = request.url
     # never use the login form itself as came_from
     if referrer == login_url:
-        referrer = _get_app_root(request)
+        referrer = request.route_url('root')
     came_from = request.params.get('came_from', referrer)
     message = ''
     userid = ''
